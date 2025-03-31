@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<User> getUsers(int page,int limit) {
+        return userRepository.getAllUsers(page,limit);
     }
 
     @Override
@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> searchUsers(String keyword, int limit, int offset) {
+
         return userRepository.searchUsers(keyword, limit, offset);
     }
 
@@ -85,4 +86,10 @@ public class UserServiceImpl implements UserService {
 
         return UserDTO.toDto(userRepository.save(UserDTO.toEntity(user)));
     }
+
+    @Override
+    public int getTotalPage() {
+        return userRepository.findAll().size();
+    }
+
 }

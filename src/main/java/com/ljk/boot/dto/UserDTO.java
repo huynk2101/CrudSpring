@@ -1,15 +1,20 @@
 package com.ljk.boot.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ljk.boot.entity.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class UserDTO {
     private Integer id;
     private String name;
     private Integer age;
     private String address;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 

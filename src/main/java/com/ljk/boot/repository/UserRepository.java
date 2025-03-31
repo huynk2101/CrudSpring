@@ -12,4 +12,6 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
     @Query("SELECT u FROM User u WHERE u.name LIKE %:keyword% ORDER BY u.id limit :limit offset :offset")
     List<User> searchUsers(String keyword,int limit,int offset);
+    @Query("SELECT u FROM User u ORDER BY u.id limit :limit offset :offset")
+    List<User> getAllUsers(int limit,int offset);
 }
